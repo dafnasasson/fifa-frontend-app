@@ -3,6 +3,9 @@ import ReactApexChart from 'react-apexcharts';
 import DiscreteSlider from '../UI/DiscreteSlider';
 
 const Chart = (props) => {
+	console.log(props.wageRanges.min);
+	console.log(props.wageRanges.max);
+
 	let options = {
 		chart: {
 			height: 350,
@@ -19,9 +22,9 @@ const Chart = (props) => {
 		},
 
 		xaxis: {
-			tickAmount: 6,
-			min: 0,
-			max: 600
+			tickAmount: 10,
+			min: props.wageRanges.min,
+			max: props.wageRanges.max
 		},
 		yaxis: {
 			tickAmount: 6,
@@ -69,7 +72,7 @@ const Chart = (props) => {
 				) : null}
 				<ReactApexChart options={options} series={seriesArr} type="scatter" height={350} />
 				<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-					<DiscreteSlider />
+					<DiscreteSlider onSliderChanged={props.onSliderChanged} />
 				</div>
 				<button onClick={props.onShowPlayers}>PLAY</button>
 			</div>

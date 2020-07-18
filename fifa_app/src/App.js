@@ -6,7 +6,12 @@ import playersSortedByAgeAscd from './data/playersData';
 const App = () => {
 	const [ players, setPlayers ] = React.useState(playersSortedByAgeAscd);
 	const [ playersInCurrentAgeRange, setPlayersInCurrentAgeRange ] = React.useState([]);
+	const [ wageRange, setWageRange ] = React.useState({ min: 0, max: 100 });
 	const [ ageRange, setAgeRange ] = React.useState({});
+
+	const sliderValueChangedHandler = (value) => {
+		setWageRange({ min: value, max: value + 100 });
+	};
 
 	const showPlayersHandler = () => {
 		let intervals = [];
@@ -16,11 +21,17 @@ const App = () => {
 			intervals.push({ minAge: i, maxAge: i + 5 });
 		}
 
-		let delay = 5000;
+		let delay = 3000;
 		for (let i = 0; i < intervals.length; i++) {
 			let [ min, max ] = [ intervals[i].minAge, intervals[i].maxAge ];
 			//get players in relevant ages
-			let playerz = players.filter((player) => player.Age >= min && player.Age <= max);
+			let playerz = players.filter(
+				(player) =>
+					player.Age >= min &&
+					player.Age <= max &&
+					player.Wage >= wageRange.min &&
+					player.Wage <= wageRange.max
+			);
 
 			playerz = playerz.sort(() => Math.random() - Math.random()).slice(0, 30);
 
@@ -36,6 +47,8 @@ const App = () => {
 				players={playersInCurrentAgeRange}
 				onShowPlayers={showPlayersHandler}
 				ageRanges={{ min: ageRange.min, max: ageRange.max }}
+				wageRanges={{ min: wageRange.min, max: wageRange.max }}
+				onSliderChanged={sliderValueChangedHandler}
 			/>
 		</div>
 	);

@@ -44,7 +44,7 @@ function valuetext(value) {
 	return `${value}`;
 }
 
-export default function DiscreteSlider() {
+export default function DiscreteSlider(props) {
 	const classes = useStyles();
 
 	return (
@@ -53,8 +53,8 @@ export default function DiscreteSlider() {
 				Wage Range Picker
 			</Typography>
 			<Slider
+				onChangeCommitted={(event, val) => props.onSliderChanged(val)}
 				defaultValue={0}
-				getAriaValueText={valuetext}
 				aria-labelledby="discrete-slider-custom"
 				step={100}
 				marks={marks}
