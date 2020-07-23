@@ -1,4 +1,3 @@
-# FIFA PLAYER COMPARISON FRONT END APP 
 
 ![](/appdemo.PNG)
 
