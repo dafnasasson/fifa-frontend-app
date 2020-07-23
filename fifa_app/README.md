@@ -1,6 +1,8 @@
 # FIFA PLAYER COMPARISON FRONT END APP 
 
+
 ![](/appdemo.PNG)
+
 #### This is an app that helps the FIFA users around the world to find potential players for their team.
 The user can select the wage of players he's intersted in.
 Once the user presses play, every 3 seconds he's shown relevant players according to his selected wage range and the age groups below:
